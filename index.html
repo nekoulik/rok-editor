@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoK Editor — Создавай красивые описания для Rise of Kingdoms</title>
+    <meta name="description" content="Бесплатный редактор описаний для альянсов в Rise of Kingdoms. Цветной текст, символы, шаблоны.">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    
+    <!-- Иконка -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+</head>
+<body>
+
+<!-- Хедер -->
+<header>
+    <div class="header-content">
+        <div class="logo">
+            <div class="logo-icon">⚔️</div>
+            <div>
+                <div class="logo-text">RoK Editor</div>
+                <div class="logo-sub">Rise of Kingdoms</div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#editor">Редактор</a></li>
+                <li><a href="#" onclick="openModal(); return false;">Возможности</a></li>
+                <li><a href="#" onclick="openAboutModal(); return false;">О проекте</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <h1>️ Создавай красивые описания для альянсов ⚔️</h1>
+    <div class="hero-divider"></div>
+    <p>Профессиональный редактор с поддержкой цветного текста, размеров шрифта и сотнями символов. Делай описания альянсов в Rise of Kingdoms стильными и запоминающимися!</p>
+</section>
+
+<!-- Основной контент -->
+<div class="container" id="editor">
+    <div class="editor-wrapper">
+        <div class="editor-header">
+            <h2>🛡️ Редактор описаний RoK 🛡️</h2>
+            <p>Настрой цвета, размеры и символы — получи готовый код для вставки в игру</p>
+        </div>
+        
+        <div class="grid">
+            <!-- ЛЕВАЯ ПАНЕЛЬ -->
+            <div>
+                <!-- НАЗВАНИЕ -->
+                <div class="panel">
+                    <h2>🏰 Название альянса (по частям)</h2>
+                    <div class="hint">Добавляй части с разными цветами. Пример: "Black" + "PieCe"</div>
+                    <div id="namePartsContainer"></div>
+                    <button class="btn btn-add" onclick="addNamePart()">+ Добавить часть названия</button>
+                    
+                    <label style="margin-top:12px;">Общий размер шрифта заголовка</label>
+                    <input type="number" id="titleSize" value="55" min="10" max="100">
+                    
+                    <label>Иконки по бокам (опционально)</label>
+                    <div class="color-row">
+                        <input type="text" id="titleIconLeft" value="" placeholder="Слева" style="text-align:center; font-size:18px">
+                        <input type="text" id="titleIconRight" value="" placeholder="Справа" style="text-align:center; font-size:18px">
+                    </div>
+                </div>
+
+                <!-- РОЛИ -->
+                <div class="panel">
+                    <h2> Роли / Строки</h2>
+                    <div class="color-row" style="margin-bottom:8px;">
+                        <label style="margin:0; width:70px;">Маркер:</label>
+                        <input type="text" id="roleMarker" value="" style="width:50px; text-align:center; font-size:16px">
+                        <label style="margin:0; width:70px;">Цвет роли:</label>
+                        <input type="color" id="roleColor" value="#ff1900">
+                        <input type="text" id="roleColorText" value="#ff1900" style="flex:1">
+                    </div>
+                    <div class="color-row" style="margin-bottom:8px;">
+                        <label style="margin:0; width:70px;">Цвет знач.:</label>
+                        <input type="color" id="valueColor" value="#ffffff">
+                        <input type="text" id="valueColorText" value="#ffffff" style="flex:1">
+                        <label style="margin:0; width:50px;">Разм.:</label>
+                        <input type="number" id="roleSize" value="30" min="10" max="100" style="width:55px">
+                    </div>
+                    
+                    <div id="rolesContainer"></div>
+                    <button class="btn btn-add" onclick="addRole()">+ Добавить строку</button>
+                </div>
+
+                <!-- ФУТЕР -->
+                <div class="panel">
+                    <h2>📜 Финальная строка</h2>
+                    <input type="text" id="footerText" value="По всем вопросам писать посланнику." placeholder="Текст внизу">
+                    <div class="color-row">
+                        <label style="margin:0; width:70px;">Цвет:</label>
+                        <input type="color" id="footerColor" value="#aaaaaa">
+                        <input type="text" id="footerColorText" value="#aaaaaa" style="flex:1">
+                        <label style="margin:0; width:50px;">Разм.:</label>
+                        <input type="number" id="footerSize" value="28" min="10" max="100" style="width:55px">
+                    </div>
+                </div>
+
+                <button class="btn" onclick="generate()" style="width:100%; padding:14px; font-size:16px; margin-top:10px;">
+                    ✨ Сгенерировать код
+                </button>
+            </div>
+
+            <!-- ПРАВАЯ ПАНЕЛЬ -->
+            <div>
+                <!-- СИМВОЛЫ -->
+                <div class="panel">
+                    <h2>🎭 Панель символов</h2>
+                    <div class="hint">Сначала кликни на нужное поле ввода, потом на символ</div>
+                    <div class="symbol-panel" id="symbolPanel"></div>
+                </div>
+
+                <!-- ПРЕВЬЮ -->
+                <div class="panel">
+                    <h2>👁️ Предпросмотр</h2>
+                    <div id="preview">Нажми "Сгенерировать код"...</div>
+                </div>
+
+                <!-- КОД -->
+                <div class="panel">
+                    <h2>📋 Готовый код для RoK</h2>
+                    <div id="code-output"></div>
+                    <button class="btn btn-copy" onclick="copyCode()">📋 Копировать код</button>
+                    <div id="successMsg" class="success-msg">✅ Скопировано! Вставляй в RoK.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО "ВОЗМОЖНОСТИ" -->
+<div id="featuresModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()" title="Закрыть">✕</button>
+        
+        <div class="modal-header">
+            <h2>🛡️ Возможности редактора 🛡️</h2>
+            <p>Всё, что нужно для создания идеального описания альянса в RoK</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon"></span>
+                <div class="feature-title">Разноцветный текст</div>
+                <div class="feature-desc">Создавай название альянса из нескольких частей с разными цветами</div>
+                <ul class="feature-list">
+                    <li>До 10 цветовых частей</li>
+                    <li>Любой HEX-цвет</li>
+                    <li>Предпросмотр в реальном времени</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon"></span>
+                <div class="feature-title">Размеры шрифта</div>
+                <div class="feature-desc">Настраивай размер для каждой секции отдельно</div>
+                <ul class="feature-list">
+                    <li>Заголовок: 10-100px</li>
+                    <li>Роли: 10-100px</li>
+                    <li>Футер: 10-100px</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎭</span>
+                <div class="feature-title">728 символов</div>
+                <div class="feature-desc">Огромная библиотека символов для украшения текста</div>
+                <ul class="feature-list">
+                    <li>16 категорий</li>
+                    <li>Оружие, звёзды, стрелки</li>
+                    <li>Геометрия, природа, эмодзи</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon"></span>
+                <div class="feature-title">Роли и строки</div>
+                <div class="feature-desc">Добавляй неограниченное количество строк с ролями</div>
+                <ul class="feature-list">
+                    <li>Семья, Советник, Посланник</li>
+                    <li>Настраиваемые иконки</li>
+                    <li>Разные цвета для ролей и значений</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">👁️</span>
+                <div class="feature-title">Живой предпросмотр</div>
+                <div class="feature-desc">Сразу видишь результат до копирования в игру</div>
+                <ul class="feature-list">
+                    <li>Точное отображение как в RoK</li>
+                    <li>Обновление в реальном времени</li>
+                    <li>Проверка перед вставкой</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📋</span>
+                <div class="feature-title">Копирование в 1 клик</div>
+                <div class="feature-desc">Готовый код копируется сразу в буфер обмена</div>
+                <ul class="feature-list">
+                    <li>Автоматическое копирование</li>
+                    <li>Формат для RoK</li>
+                    <li>Вставка в описание альянса</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🔧</span>
+                <div class="feature-title">Автоматические пробелы</div>
+                <div class="feature-desc">Защита от ошибок парсинга в игре</div>
+                <ul class="feature-list">
+                    <li>Пробел после символов</li>
+                    <li>Корректный формат тегов</li>
+                    <li>Работает в RoK без ошибок</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon"></span>
+                <div class="feature-title">Адаптивный дизайн</div>
+                <div class="feature-desc">Работает на любых устройствах</div>
+                <ul class="feature-list">
+                    <li>Десктоп и мобильные</li>
+                    <li>Удобный интерфейс</li>
+                    <li>Быстрая загрузка</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <p>💡 Совет: Используй символы из панели для украшения описания — они автоматически добавляются с пробелом для корректной работы в RoK</p>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО "О ПРОЕКТЕ" -->
+<div id="aboutModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeAboutModal()" title="Закрыть">✕</button>
+        
+        <div class="modal-header">
+            <h2>🏰 О проекте RoK Editor 🏰</h2>
+            <p>Неофициальный инструмент для сообщества Rise of Kingdoms</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">📖</span>
+                <div class="feature-title">Что это такое?</div>
+                <div class="feature-desc">
+                    RoK Editor — это бесплатный веб-редактор для создания стильных описаний альянсов в игре Rise of Kingdoms. 
+                    Помогает лидерам альянсов быстро оформлять информацию о наборе, правилах и контактах.
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <div class="feature-title">Для кого создан?</div>
+                <ul class="feature-list">
+                    <li>Лидеры и офицеры альянсов</li>
+                    <li>Дипломаты и посланники</li>
+                    <li>Создатели гайдов и контента</li>
+                    <li>Все игроки RoK</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">⚙️</span>
+                <div class="feature-title">Технологии</div>
+                <ul class="feature-list">
+                    <li>HTML5 + CSS3</li>
+                    <li>Vanilla JavaScript</li>
+                    <li>Без фреймворков и библиотек</li>
+                    <li>728 символов в 16 категориях</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">✨</span>
+                <div class="feature-title">Преимущества</div>
+                <ul class="feature-list">
+                    <li>Работает в браузере без установки</li>
+                    <li>Полностью бесплатно</li>
+                    <li>Без рекламы и регистрации</li>
+                    <li>Данные не отправляются на сервер</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📌</span>
+                <div class="feature-title">Версия проекта</div>
+                <div class="feature-desc" style="margin-bottom: 10px;">
+                    <strong style="color: #d4af37;">v2.1.0</strong> — Сентябрь 2026
+                </div>
+                <ul class="feature-list">
+                    <li>Исправлены пробелы после символов</li>
+                    <li>Добавлено 728 символов</li>
+                    <li>Модальные окна</li>
+                    <li>Фоновое изображение</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon"></span>
+                <div class="feature-title">История версий</div>
+                <ul class="feature-list">
+                    <li><strong>v2.1</strong> — Модалки, фон, пробелы</li>
+                    <li><strong>v2.0</strong> — Разноцветное название</li>
+                    <li><strong>v1.0</strong> — Первый релиз</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">💬</span>
+                <div class="feature-title">Обратная связь</div>
+                <div class="feature-desc">
+                    Нашли баг или есть идея для улучшения? Напишите нам!
+                </div>
+                <ul class="feature-list">
+                    <li>VK: RoK Editor</li>
+                    <li>Email: liluev83@vk.com</li>
+                    <li>GitHub: rok-editor</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">⚖️</span>
+                <div class="feature-title">Дисклеймер</div>
+                <div class="feature-desc">
+                    Этот проект является <strong style="color: #d4af37;">неофициальным</strong> инструментом и не связан с Lilith Games. 
+                    Все права на игру Rise of Kingdoms принадлежат её правообладателям.
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <p>🛡️ Создано с ❤️ для сообщества Rise of Kingdoms · 2026</p>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО "ВКОНТАКТЕ" -->
+<div id="vkModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeVkModal()" title="Закрыть">✕</button>
+        
+        <div class="modal-header">
+            <h2>🇷🇺 Группа ВКонтакте</h2>
+            <p>Присоединяйся к нашему сообществу в VK</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">📢</span>
+                <div class="feature-title">О группе</div>
+                <div class="feature-desc">
+                    Наше сообщество ВКонтакте — это место, где собираются игроки Rise of Kingdoms 
+                    для обмена опытом, поиска альянсов и обсуждения стратегий.
+                </div>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">🎮</span>
+                <div class="feature-title">Что внутри?</div>
+                <ul class="feature-list">
+                    <li>Новости и обновления игры</li>
+                    <li>Гайды и советы от опытных игроков</li>
+                    <li>Поиск альянсов и игроков</li>
+                    <li>Обсуждение стратегий КВК</li>
+                    <li>Помощь новичкам</li>
+                    <li>Конкурсы и розыгрыши</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon"></span>
+                <div class="feature-title">Как присоединиться?</div>
+                <div class="feature-desc" style="margin-bottom: 15px;">
+                    Нажми на кнопку ниже, чтобы перейти в нашу группу ВКонтакте:
+                </div>
+                <a href="https://vk.ru/rok_editor" target="_blank" 
+                   style="display: inline-block; background: linear-gradient(45deg, #0077FF, #0055CC); 
+                          color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; 
+                          font-weight: bold; transition: 0.3s;"
+                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(0,119,255,0.5)'"
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    🇺 Перейти в группу VK
+                </a>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📜</span>
+                <div class="feature-title">Правила группы</div>
+                <ul class="feature-list">
+                    <li>Уважай других участников</li>
+                    <li>Без спама и флуда</li>
+                    <li>Без рекламы без разрешения</li>
+                    <li>Используй темы по назначению</li>
+                    <li>Помогай новичкам</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <p>🛡️ Ждём тебя в нашей группе! · 2026</p>
+        </div>
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО "ОБРАТНАЯ СВЯЗЬ" -->
+<div id="feedbackModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeFeedbackModal()" title="Закрыть">✕</button>
+        
+        <div class="modal-header">
+            <h2>📧 Обратная связь</h2>
+            <p>Нашли баг или есть идея для улучшения? Напишите нам!</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card" style="grid-column: 1 / -1;">
+                <span class="feature-icon">✉️</span>
+                <div class="feature-title">Отправить сообщение</div>
+                <form onsubmit="submitFeedback(event)" style="margin-top: 15px;">
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: #d4af37; font-weight: bold;">Ваше имя:</label>
+                        <input type="text" id="feedbackName" required 
+                               style="width: 100%; padding: 10px; background: #1a1a2e; border: 1px solid #444; 
+                                      color: #fff; border-radius: 5px; font-size: 14px;"
+                               placeholder="Введите ваше имя">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: #d4af37; font-weight: bold;">Email:</label>
+                        <input type="email" id="feedbackEmail" required 
+                               style="width: 100%; padding: 10px; background: #1a1a2e; border: 1px solid #444; 
+                                      color: #fff; border-radius: 5px; font-size: 14px;"
+                               placeholder="your@email.com">
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <label style="display: block; margin-bottom: 5px; color: #d4af37; font-weight: bold;">Сообщение:</label>
+                        <textarea id="feedbackMessage" required rows="5"
+                                  style="width: 100%; padding: 10px; background: #1a1a2e; border: 1px solid #444; 
+                                         color: #fff; border-radius: 5px; font-size: 14px; resize: vertical; font-family: inherit;"
+                                  placeholder="Опишите проблему или предложение..."></textarea>
+                    </div>
+                    
+                    <button type="submit" 
+                            style="background: linear-gradient(45deg, #d4af37, #aa8c2c); color: #000; 
+                                   border: none; padding: 12px 24px; border-radius: 5px; font-weight: bold; 
+                                   cursor: pointer; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+                                   transition: 0.3s;"
+                            onmouseover="this.style.background='linear-gradient(45deg, #f4e5a1, #d4af37)'; this.style.transform='translateY(-2px)'"
+                            onmouseout="this.style.background='linear-gradient(45deg, #d4af37, #aa8c2c)'; this.style.transform='translateY(0)'">
+                        📨 Отправить сообщение
+                    </button>
+                </form>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">📱</span>
+                <div class="feature-title">Другие способы связи</div>
+                <ul class="feature-list">
+                    <li>VK: RoK Editor</li>
+                    <li>Email: liluev83@vk.com</li>
+                    <li>GitHub: github.com/rok-editor</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <span class="feature-icon">💡</span>
+                <div class="feature-title">Что можно сообщить?</div>
+                <ul class="feature-list">
+                    <li>Баги и ошибки</li>
+                    <li>Идеи для новых функций</li>
+                    <li>Проблемы с отображением</li>
+                    <li>Предложения по улучшению</li>
+                    <li>Вопросы по использованию</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <p>⚡ Мы стараемся отвечать в течение 24 часов · 2026</p>
+        </div>
+    </div>
+</div>
+
+<!-- Футер -->
+<footer id="about">
+    <div class="footer-content">
+        <div class="footer-links">
+            <a href="#editor">Редактор</a>
+            <a href="#" onclick="openModal(); return false;">Возможности</a>
+            <a href="#" onclick="openAboutModal(); return false;">О проекте</a>
+            <a href="#" onclick="openVkModal(); return false;">ВКонтакте</a>
+            <a href="#" onclick="openFeedbackModal(); return false;">Обратная связь</a>
+        </div>
+        <div class="footer-copy">
+            © 2026 RoK Editor. Неофициальный инструмент для Rise of Kingdoms. Все права на игру принадлежат Lilith Games.
+        </div>
+    </div>
+</footer>
+
+<!-- Скрипты -->
+<script src="js/symbols.js"></script>
+<script src="js/main.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/about.js"></script>
+<script src="js/vk.js"></script>
+<script src="js/feedback.js"></script>
+
+</body>
+</html>
