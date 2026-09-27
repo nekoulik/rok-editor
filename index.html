@@ -27,9 +27,15 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#editor">Редактор</a></li>
-                <li><a href="#" onclick="openModal(); return false;">Возможности</a></li>
-                <li><a href="#" onclick="openAboutModal(); return false;">О проекте</a></li>
+               <li><a href="#" onclick="openVkModal(); return false;">ВКонтакте</a></li>
+               <li><a href="#" onclick="openSupportModal(); return false;" 
+                      style="background: linear-gradient(45deg, #d4af37, #aa8c2c); 
+                            color: #000; padding: 8px 16px; border-radius: 6px; 
+                            font-weight: bold; margin-left: 10px; transition: 0.3s;"
+                      nmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(212,175,55,0.4)'"
+                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                   💰 Поддержать
+                </a></li>
             </ul>
         </nav>
     </div>
@@ -327,9 +333,8 @@
                     Нашли баг или есть идея для улучшения? Напишите нам!
                 </div>
                 <ul class="feature-list">
-                    <!-- ЗАМЕНИТЬ: укажи свою реальную группу VK и email -->
                     <li>VK: vk.com/rok_editor</li>
-                    <li>Email: your_email@mail.ru</li>
+                    <li>Email: liluev83@vk.com</li>
                     <li>GitHub: github.com/nekoulik/rok-editor</li>
                 </ul>
             </div>
@@ -356,7 +361,6 @@
         <button class="modal-close" onclick="closeVkModal()" title="Закрыть">✕</button>
         
         <div class="modal-header">
-            <!-- ИСПРАВЛЕНО: добавлен полный флаг 🇷🇺 -->
             <h2>🇷🇺 Группа ВКонтакте</h2>
             <p>Присоединяйся к нашему сообществу в VK</p>
         </div>
@@ -390,7 +394,6 @@
                 <div class="feature-desc" style="margin-bottom: 15px;">
                     Нажми на кнопку ниже, чтобы перейти в нашу группу ВКонтакте:
                 </div>
-                <!-- ЗАМЕНИТЬ: укажи ссылку на свою группу (например, https://vk.com/rok_editor) -->
                 <a href="https://vk.com/rok_editor" target="_blank" 
                    style="display: inline-block; background: linear-gradient(45deg, #0077FF, #0055CC); 
                           color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; 
@@ -431,7 +434,6 @@
         </div>
         
         <div class="features-grid">
-            <!-- Карточка 1: Написать на почту -->
             <div class="feature-card" style="grid-column: 1 / -1; text-align: center;">
                 <span class="feature-icon">✉️</span>
                 <div class="feature-title">Написать на почту</div>
@@ -439,7 +441,6 @@
                     Нажми на кнопку ниже — откроется твой почтовый клиент с готовым письмом. 
                     Просто напиши сообщение и отправь!
                 </div>
-                <!-- ЗАМЕНИТЬ: вставь свой реальный email вместо your_email@mail.ru -->
                 <a href="mailto:liluev83@vk.com?subject=Сообщение с RoK Editor&body=Здравствуйте!%0D%0A%0D%0A(Опишите вашу проблему или предложение)%0D%0A%0D%0AС уважением" 
                    target="_blank"
                    style="display: inline-block; background: linear-gradient(45deg, #d4af37, #aa8c2c); 
@@ -451,19 +452,16 @@
                 </a>
             </div>
             
-            <!-- Карточка 2: Другие способы связи -->
             <div class="feature-card">
                 <span class="feature-icon">📱</span>
                 <div class="feature-title">Другие способы связи</div>
                 <ul class="feature-list">
-                    <!-- ЗАМЕНИТЬ: укажи свои реальные контакты -->
                     <li>VK: vk.com/rok_editor</li>
                     <li>GitHub: github.com/nekoulik/rok-editor</li>
                     <li>Email: liluev83@vk.com</li>
                 </ul>
             </div>
             
-            <!-- Карточка 3: Что можно сообщить -->
             <div class="feature-card">
                 <span class="feature-icon">💡</span>
                 <div class="feature-title">Что можно сообщить?</div>
@@ -483,14 +481,92 @@
     </div>
 </div>
 
+<!-- МОДАЛЬНОЕ ОКНО "ПОДДЕРЖАТЬ ПРОЕКТ" -->
+<div id="supportModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeSupportModal()" title="Закрыть">✕</button>
+        
+        <div class="modal-header">
+            <h2>💰 Поддержать проект</h2>
+            <p>Помоги развитию RoK Editor — поддержи проект!</p>
+        </div>
+        
+        <div class="features-grid">
+            <!-- Карточка 1: Способы доната (ЮMoney) -->
+            <div class="feature-card" style="grid-column: 1 / -1; text-align: center;">
+                <span class="feature-icon">💵</span>
+                <div class="feature-title">Финансовая поддержка</div>
+                <div class="feature-desc" style="margin-bottom: 20px;">
+                    Любая сумма поможет оплатить хостинг и развитие проекта. Спасибо!
+                </div>
+                
+                <!-- Карточка ЮMoney с прямой ссылкой -->
+                <div style="background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 10px; padding: 20px; text-align: center; max-width: 400px; margin: 0 auto;">
+                    <div style="font-size: 40px; margin-bottom: 10px;">💳</div>
+                    <div style="color: #d4af37; font-weight: bold; margin-bottom: 10px; font-size: 18px;">ЮMoney (ЮKassa)</div>
+                    <div style="color: #ccc; margin-bottom: 20px; font-size: 14px; line-height: 1.5;">
+                        Безопасный перевод по номеру кошелька.<br>
+                        Поддерживаются любые банковские карты.
+                    </div>
+                    <a href="https://yoomoney.ru/to/4100116744199598" target="_blank"
+                       style="display: inline-block; background: linear-gradient(45deg, #d4af37, #aa8c2c); 
+                              color: #000; border: none; padding: 12px 24px; 
+                              border-radius: 8px; cursor: pointer; font-weight: bold; 
+                              font-size: 16px; text-decoration: none; transition: 0.3s;"
+                       onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.5)'"
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                        💰 Перейти к донату
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Карточка 2: Репосты -->
+            <div class="feature-card">
+                <span class="feature-icon">📢</span>
+                <div class="feature-title">Рассказать друзьям</div>
+                <ul class="feature-list">
+                    <li>Поделись ссылкой в соцсетях</li>
+                    <li>Расскажи в Discord сервере</li>
+                    <li>Порекомендуй в альянсе</li>
+                    <li>Оставь отзыв ВКонтакте</li>
+                </ul>
+            </div>
+            
+            <!-- Карточка 3: Помощь в разработке -->
+            <div class="feature-card">
+                <span class="feature-icon">💻</span>
+                <div class="feature-title">Помощь в разработке</div>
+                <ul class="feature-list">
+                    <li>Предложи новую функцию</li>
+                    <li>Сообщи о баге</li>
+                    <li>Помоги с переводом</li>
+                    <li>Предложи улучшение дизайна</li>
+                </ul>
+            </div>
+            
+            <!-- Карточка 4: Обратная связь -->
+            <div class="feature-card">
+                <span class="feature-icon">💬</span>
+                <div class="feature-title">Твоё мнение важно</div>
+                <div class="feature-desc">
+                    Напиши, что тебе нравится, а что можно улучшить. 
+                    Каждое сообщение помогает сделать проект лучше!
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <p>❤️ Спасибо за поддержку! Вместе мы сделаем RoK Editor ещё лучше · 2026</p>
+        </div>
+    </div>
+</div>
+
 <!-- Футер -->
 <footer id="about">
     <div class="footer-content">
         <div class="footer-links">
-            <a href="#editor">Редактор</a>
             <a href="#" onclick="openModal(); return false;">Возможности</a>
-            <a href="#" onclick="openAboutModal(); return false;">О проекте</a>
-            <a href="#" onclick="openVkModal(); return false;">ВКонтакте</a>
+            <a href="#" onclick="openAboutModal(); return false;">О проекте</a>            
             <a href="#" onclick="openFeedbackModal(); return false;">Обратная связь</a>
         </div>
         <div class="footer-copy">
@@ -506,6 +582,7 @@
 <script src="js/about.js"></script>
 <script src="js/vk.js"></script>
 <script src="js/feedback.js"></script>
+<script src="js/support.js"></script>
 
 </body>
 </html>
