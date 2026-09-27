@@ -37,7 +37,7 @@
 
 <!-- Hero -->
 <section class="hero">
-    <h1>️ Создавай красивые описания для альянсов ⚔️</h1>
+    <h1>⚔️ Создавай красивые описания для альянсов ⚔️</h1>
     <div class="hero-divider"></div>
     <p>Профессиональный редактор с поддержкой цветного текста, размеров шрифта и сотнями символов. Делай описания альянсов в Rise of Kingdoms стильными и запоминающимися!</p>
 </section>
@@ -72,7 +72,7 @@
 
                 <!-- РОЛИ -->
                 <div class="panel">
-                    <h2> Роли / Строки</h2>
+                    <h2>👥 Роли / Строки</h2>
                     <div class="color-row" style="margin-bottom:8px;">
                         <label style="margin:0; width:70px;">Маркер:</label>
                         <input type="text" id="roleMarker" value="" style="width:50px; text-align:center; font-size:16px">
@@ -149,7 +149,7 @@
         
         <div class="features-grid">
             <div class="feature-card">
-                <span class="feature-icon"></span>
+                <span class="feature-icon">🎨</span>
                 <div class="feature-title">Разноцветный текст</div>
                 <div class="feature-desc">Создавай название альянса из нескольких частей с разными цветами</div>
                 <ul class="feature-list">
@@ -160,7 +160,7 @@
             </div>
             
             <div class="feature-card">
-                <span class="feature-icon"></span>
+                <span class="feature-icon">📏</span>
                 <div class="feature-title">Размеры шрифта</div>
                 <div class="feature-desc">Настраивай размер для каждой секции отдельно</div>
                 <ul class="feature-list">
@@ -182,7 +182,7 @@
             </div>
             
             <div class="feature-card">
-                <span class="feature-icon"></span>
+                <span class="feature-icon">👥</span>
                 <div class="feature-title">Роли и строки</div>
                 <div class="feature-desc">Добавляй неограниченное количество строк с ролями</div>
                 <ul class="feature-list">
@@ -226,7 +226,7 @@
             </div>
             
             <div class="feature-card">
-                <span class="feature-icon"></span>
+                <span class="feature-icon">📱</span>
                 <div class="feature-title">Адаптивный дизайн</div>
                 <div class="feature-desc">Работает на любых устройствах</div>
                 <ul class="feature-list">
@@ -311,7 +311,7 @@
             </div>
             
             <div class="feature-card">
-                <span class="feature-icon"></span>
+                <span class="feature-icon">📜</span>
                 <div class="feature-title">История версий</div>
                 <ul class="feature-list">
                     <li><strong>v2.1</strong> — Модалки, фон, пробелы</li>
@@ -327,9 +327,10 @@
                     Нашли баг или есть идея для улучшения? Напишите нам!
                 </div>
                 <ul class="feature-list">
-                    <li>VK: RoK Editor</li>
-                    <li>Email: liluev83@vk.com</li>
-                    <li>GitHub: rok-editor</li>
+                    <!-- ЗАМЕНИТЬ: укажи свою реальную группу VK и email -->
+                    <li>VK: vk.com/rok_editor</li>
+                    <li>Email: your_email@mail.ru</li>
+                    <li>GitHub: github.com/nekoulik/rok-editor</li>
                 </ul>
             </div>
             
@@ -355,6 +356,7 @@
         <button class="modal-close" onclick="closeVkModal()" title="Закрыть">✕</button>
         
         <div class="modal-header">
+            <!-- ИСПРАВЛЕНО: добавлен полный флаг 🇷🇺 -->
             <h2>🇷🇺 Группа ВКонтакте</h2>
             <p>Присоединяйся к нашему сообществу в VK</p>
         </div>
@@ -383,18 +385,19 @@
             </div>
             
             <div class="feature-card">
-                <span class="feature-icon"></span>
+                <span class="feature-icon">🔗</span>
                 <div class="feature-title">Как присоединиться?</div>
                 <div class="feature-desc" style="margin-bottom: 15px;">
                     Нажми на кнопку ниже, чтобы перейти в нашу группу ВКонтакте:
                 </div>
-                <a href="https://vk.ru/rok_editor" target="_blank" 
+                <!-- ЗАМЕНИТЬ: укажи ссылку на свою группу (например, https://vk.com/rok_editor) -->
+                <a href="https://vk.com/rok_editor" target="_blank" 
                    style="display: inline-block; background: linear-gradient(45deg, #0077FF, #0055CC); 
                           color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; 
                           font-weight: bold; transition: 0.3s;"
                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(0,119,255,0.5)'"
                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    🇺 Перейти в группу VK
+                    🇷🇺 Перейти в группу VK
                 </a>
             </div>
             
@@ -428,56 +431,39 @@
         </div>
         
         <div class="features-grid">
-            <div class="feature-card" style="grid-column: 1 / -1;">
+            <!-- Карточка 1: Написать на почту -->
+            <div class="feature-card" style="grid-column: 1 / -1; text-align: center;">
                 <span class="feature-icon">✉️</span>
-                <div class="feature-title">Отправить сообщение</div>
-                <form onsubmit="submitFeedback(event)" style="margin-top: 15px;">
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; color: #d4af37; font-weight: bold;">Ваше имя:</label>
-                        <input type="text" id="feedbackName" required 
-                               style="width: 100%; padding: 10px; background: #1a1a2e; border: 1px solid #444; 
-                                      color: #fff; border-radius: 5px; font-size: 14px;"
-                               placeholder="Введите ваше имя">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; color: #d4af37; font-weight: bold;">Email:</label>
-                        <input type="email" id="feedbackEmail" required 
-                               style="width: 100%; padding: 10px; background: #1a1a2e; border: 1px solid #444; 
-                                      color: #fff; border-radius: 5px; font-size: 14px;"
-                               placeholder="your@email.com">
-                    </div>
-                    
-                    <div style="margin-bottom: 15px;">
-                        <label style="display: block; margin-bottom: 5px; color: #d4af37; font-weight: bold;">Сообщение:</label>
-                        <textarea id="feedbackMessage" required rows="5"
-                                  style="width: 100%; padding: 10px; background: #1a1a2e; border: 1px solid #444; 
-                                         color: #fff; border-radius: 5px; font-size: 14px; resize: vertical; font-family: inherit;"
-                                  placeholder="Опишите проблему или предложение..."></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            style="background: linear-gradient(45deg, #d4af37, #aa8c2c); color: #000; 
-                                   border: none; padding: 12px 24px; border-radius: 5px; font-weight: bold; 
-                                   cursor: pointer; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
-                                   transition: 0.3s;"
-                            onmouseover="this.style.background='linear-gradient(45deg, #f4e5a1, #d4af37)'; this.style.transform='translateY(-2px)'"
-                            onmouseout="this.style.background='linear-gradient(45deg, #d4af37, #aa8c2c)'; this.style.transform='translateY(0)'">
-                        📨 Отправить сообщение
-                    </button>
-                </form>
+                <div class="feature-title">Написать на почту</div>
+                <div class="feature-desc" style="margin-bottom: 20px;">
+                    Нажми на кнопку ниже — откроется твой почтовый клиент с готовым письмом. 
+                    Просто напиши сообщение и отправь!
+                </div>
+                <!-- ЗАМЕНИТЬ: вставь свой реальный email вместо your_email@mail.ru -->
+                <a href="mailto:liluev83@vk.com?subject=Сообщение с RoK Editor&body=Здравствуйте!%0D%0A%0D%0A(Опишите вашу проблему или предложение)%0D%0A%0D%0AС уважением" 
+                   target="_blank"
+                   style="display: inline-block; background: linear-gradient(45deg, #d4af37, #aa8c2c); 
+                          color: #000; padding: 14px 32px; border-radius: 8px; text-decoration: none; 
+                          font-weight: bold; font-size: 16px; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;"
+                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(212,175,55,0.5)'"
+                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    ✉️ Написать письмо
+                </a>
             </div>
             
+            <!-- Карточка 2: Другие способы связи -->
             <div class="feature-card">
                 <span class="feature-icon">📱</span>
                 <div class="feature-title">Другие способы связи</div>
                 <ul class="feature-list">
-                    <li>VK: RoK Editor</li>
+                    <!-- ЗАМЕНИТЬ: укажи свои реальные контакты -->
+                    <li>VK: vk.com/rok_editor</li>
+                    <li>GitHub: github.com/nekoulik/rok-editor</li>
                     <li>Email: liluev83@vk.com</li>
-                    <li>GitHub: github.com/rok-editor</li>
                 </ul>
             </div>
             
+            <!-- Карточка 3: Что можно сообщить -->
             <div class="feature-card">
                 <span class="feature-icon">💡</span>
                 <div class="feature-title">Что можно сообщить?</div>
@@ -492,7 +478,7 @@
         </div>
         
         <div class="modal-footer">
-            <p>⚡ Мы стараемся отвечать в течение 24 часов · 2026</p>
+            <p>⚡ Обычно отвечаем в течение 24 часов · 2026</p>
         </div>
     </div>
 </div>
