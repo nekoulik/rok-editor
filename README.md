@@ -162,6 +162,4 @@ v1.0.0
 Сергей Лилуев (@nekoulik)
 GitHub: github.com/nekoulik &nbsp;|&nbsp; VK: vk.com/rok_editor
 
-<p align="center">
-<strong>⚔️ Создано с ❤️ для сообщества Rise of Kingdoms · 2026 ⚔️</strong>
-</p>
+⚔️ Создано с ❤️ для сообщества Rise of Kingdoms · 2026 ⚔️
